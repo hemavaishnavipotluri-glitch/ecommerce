@@ -332,15 +332,10 @@ def place_order():
     conn = get_db_connection()
 
     for item in data:
-        conn.execute("""
-            INSERT INTO orders (username, product_name, price, image)
-            VALUES (?, ?, ?, ?)
-        """, (
-            username,
-            item["name"],
-            item["price"],
-            item["image"]
-        ))
+       conn.execute("""
+    INSERT INTO orders (username, product_name, price, image, status)
+    VALUES (?, ?, ?, ?, ?)
+""", (username, item["name"], item["price"], item["image"], "Processing"))
 
     conn.commit()
     conn.close()
