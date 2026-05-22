@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1>My Store</h1>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/orders">Orders</a>
+       
+        {% for order in orders %}
+    <a href="/invoice/{{ order['id'] }}">
+        View Invoice
+    </a>
+{% endfor %}
+
+        {% if session.get('user') %}
+            <span>Welcome, {{ session['user'] }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
+    </div>
+</nav>
+
+<h1 style="padding:20px;">My Orders</h1>
+
+<!-- ORDERS -->
+<section class="products">
+
+    {% for order in orders %}
+
+    <div class="card">
+
+        <img src="{{ order['image'] }}">
+
+        <h2>{{ order['product_name'] }}</h2>
+
+        <p>₹{{ order['price'] }}</p>
+        
+        <span class="status {{ order['status']|lower }}">
+    {{ order['status'] }}
+</span>
+
+        <!-- FAKE STATUS (you can later make dynamic) -->
+        <span class="status">Pending</span>
+
+        <small style="display:block; margin-top:10px; color:gray;">
+            Ordered on: Today
+        </small>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+</body>
+</html>

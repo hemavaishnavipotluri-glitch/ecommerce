@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+    <div style="width:400px;margin:50px auto;">
+
+        <h1>Add Product</h1>
+
+        <form action="/add-product" method="POST">
+
+            <input
+            type="text"
+            name="name"
+            placeholder="Product Name"
+
+            style="width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <input
+            type="number"
+            name="price"
+            placeholder="Price"
+
+            style="width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <input
+            type="text"
+            name="image"
+            placeholder="Image URL"
+
+            style="width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <button
+            style="width:100%;
+            padding:10px;">
+
+                Add Product
+
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Register</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>My Store</h1>
+
+        <div>
+
+            <a href="/">Home</a>
+
+            <a href="/cart">Cart</a>
+
+            <a href="/login">Login</a>
+
+            <a href="/register">Register</a>
+
+        </div>
+
+    </nav>
+
+    <div style="width:300px;margin:100px auto;">
+
+        <h1>Register</h1>
+
+        <form action="/register-user" method="POST">
+
+            <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+
+            style="
+            width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+
+            style="
+            width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+
+            style="
+            width:100%;
+            padding:10px;
+            margin:10px 0;">
+
+            <button
+            type="submit"
+
+            style="
+            width:100%;
+            padding:10px;
+            background:black;
+            color:white;
+            border:none;
+            cursor:pointer;">
+
+                Register
+
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

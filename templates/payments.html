@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h1>My Store</h1>
+</nav>
+
+<div style="padding:20px;">
+    <h1>Payment Page</h1>
+
+    <h2>Total Amount: ₹{{ total }}</h2>
+
+    <button onclick="payNow()" style="padding:10px;background:green;color:white;">
+        Pay Now
+    </button>
+</div>
+
+<script>
+function payNow(){
+    alert("Payment Successful (Demo)");
+    window.location.href = "/orders";
+}
+</script>
+
+</body>
+</html>

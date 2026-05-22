@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Product</title>
+
+</head>
+
+<body>
+
+    <div style="width:300px;margin:100px auto;">
+
+        <h1>Edit Product</h1>
+
+        <form
+        action="/update-product/{{ product['id'] }}"
+        method="POST">
+
+            <input
+            type="text"
+            name="name"
+
+            value="{{ product['name'] }}">
+
+            <br><br>
+
+            <input
+            type="number"
+            name="price"
+
+            value="{{ product['price'] }}">
+
+            <br><br>
+
+            <input
+            type="text"
+            name="image"
+
+            value="{{ product['image'] }}">
+
+            <br><br>
+
+            <button>
+
+                Update Product
+
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

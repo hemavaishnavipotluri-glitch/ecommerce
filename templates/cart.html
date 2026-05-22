@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Cart</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>My Store</h1>
+
+        <div>
+
+            <a href="/">Home</a>
+            <a href="/cart">Cart</a>
+
+        </div>
+
+    </nav>
+
+    <h1 style="padding:20px;">
+        Shopping Cart
+    </h1>
+
+    <div id="cart-items"></div>
+
+    <h2 id="total" style="padding:20px;"></h2>
+<button onclick="goToPayment()">
+    Checkout
+</button>
+
+<script>
+function goToPayment(){
+    window.location.href = "/payment";
+}
+</script>
+
+    <script>
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let cartContainer = document.getElementById("cart-items");
+
+        let total = 0;
+
+        function loadCart(){
+
+            cartContainer.innerHTML = "";
+            total = 0;
+
+            cart.forEach((item, index) => {
+
+                total += Number(item.price);
+
+                cartContainer.innerHTML += `
+
+                <div style="
+                border:1px solid #ccc;
+                padding:20px;
+                margin:20px;">
+
+                    <img src="${item.image}"
+                    style="width:150px;height:150px;object-fit:cover;">
+
+                    <h2>${item.name}</h2>
+
+                    <p>₹${item.price}</p>
+
+                    <button onclick="removeItem(${index})"
+                    style="background:red;color:white;border:none;padding:10px;">
+                        Remove
+                    </button>
+
+                </div>
+
+                `;
+            });
+
+            document.getElementById("total")
+            .innerHTML = "Total: ₹" + total;
+        }
+
+        function removeItem(index){
+
+            cart.splice(index, 1);
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            loadCart();
+        }
+
+        async function checkout(){
+
+    if(cart.length === 0){
+        alert("Cart is empty");
+        return;
+    }
+
+    let response = await fetch("/place-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cart)
+    });
+
+    let data = await response.json();
+
+    alert(data.message);
+
+    localStorage.removeItem("cart");
+
+    location.reload();
+}
+
+        loadCart();
+
+    </script>
+
+</body>
+
+</html>
